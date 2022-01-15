@@ -1,0 +1,67 @@
+<div
+        className="media"
+        style={{ cursor: "pointer" }}
+        color="inherit"
+        onClick={handleOpen}
+      >
+        {detail}
+      </div>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          {detail && (
+            <div className={classes.paper}>
+              <div className="ContentModal">
+                <img
+                  src={unavailable_img}
+                  alt={"bla bla"}
+                  className="ContentModal__portrait"
+                />
+                <img
+                  src={unavailable_img}
+                  alt={"tuktuk"}
+                  className="ContentModal__landscape"
+                />
+                <div className="ContentModal__about">
+                  <span className="ContentModal__title">
+                    {detail.id} (
+                    {/* {(
+                      content.first_air_date ||
+                      content.release_date ||
+                      "-----"
+                    ).substring(0, 4)} */}
+                    )
+                  </span>
+                  {detail.id && <i className="tagline">{detail.id}</i>}
+
+                  <span className="ContentModal__description">{detail.id}</span>
+
+                  <div>
+                    {/* <Carousel id={id} media_type={media_type} /> */}
+                  </div>
+
+                  {/* <Button
+                    variant="contained"
+                    startIcon={<YouTubeIcon />}
+                    color="secondary"
+                    target="__blank"
+                    href={`https://www.youtube.com/watch?v=${video}`}
+                  >
+                    Watch the Trailer
+                  </Button> */}
+                </div>
+              </div>
+            </div>
+          )}
+        </Fade>
+      </Modal>

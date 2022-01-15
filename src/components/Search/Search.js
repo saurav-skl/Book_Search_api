@@ -4,10 +4,10 @@ import axios from "axios";
 import {
   Button,
   Container,
+  Snackbar,
   Tab,
   Tabs,
   TextField,
-  ThemeProvider,
 } from "@material-ui/core";
 
 import SearchIcon from "@material-ui/icons/Search";
@@ -20,10 +20,21 @@ const searchStyle = {
   justifyContent: "center",
   padding: "20px",
 };
+const searchCard = {
+  margin: "75px auto",
+  background: "#F7DED2",
+  display: "flex",
+  flexFlow: "row wrap",
+  justifyContent: "center",
+  gap: "20px",
+  padding: "10px",
+};
 
 const Search = () => {
   const [searchText, setSearchText] = useState("");
   const [content, setContent] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState("Loading...");
 
   const fetchSearch = async () => {
     try {
@@ -35,14 +46,24 @@ const Search = () => {
         },
       });
       let data = res.data;
-      if (data.items.length > 0) {
-        setContent(data.items);
-        console.log(data.items)
+      if (data.items !== undefined) {
+        if (data.items.length > 0) {
+          setContent(data.items);
+        }
+      } else {
+        setMessage("Not Found...");
+        setOpen(true);
+        setSearchText("");
       }
     } catch (error) {
-      console.error(error);
+      setMessage("Bad Request...");
+      setOpen(true);
       setSearchText("");
     }
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   return (
@@ -66,12 +87,20 @@ const Search = () => {
             <SearchIcon />
           </Button>
         </div>
-        <div className="trending">
+        <div className="trending" style={searchCard}>
           {content &&
             content.map((c) => (
-              <SingleContent key={c.id} id={c.id} detail={c} />
+              <div>
+                <SingleContent key={c.id} id={c.id} detail={c} />
+              </div>
             ))}
         </div>
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          message={message}
+        />
       </Container>
     </div>
   );

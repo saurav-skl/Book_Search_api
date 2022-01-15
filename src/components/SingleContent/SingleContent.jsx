@@ -1,10 +1,13 @@
 // import { img_300, unavailable } from "../../config/config";
 import unavailable_img from "../../img/unavailable_img.png";
-import React from "react";
+import React, { useState } from "react";
 import ContentModal from "../Modal/ContentModal";
 import "./SingleContent.css";
+import { Button } from "@material-ui/core";
 
 const SingleContent = ({ detail }) => {
+  const [open, setOpen] = useState(false);
+
   const image =
     detail.volumeInfo.imageLinks !== undefined
       ? detail.volumeInfo.imageLinks.thumbnail
@@ -31,7 +34,6 @@ const SingleContent = ({ detail }) => {
 
   return (
     <>
-      {console.log(detail.id)}
       <div className="card">
         <div className="img">
           <img src={image} alt={detail.id} title={detail.id} />
@@ -40,17 +42,26 @@ const SingleContent = ({ detail }) => {
           <h2>Title: {detail.volumeInfo.title}</h2>
           <div className="price">Publisher: {publisher}</div>
           <div className="tag">{author}</div>
-          <div className="rate">
-            {avgrating}
-          </div>
+          <div className="rate">{avgrating}</div>
 
           <div className="desc">publishedDate: {pdate}</div>
-          <a href="#" className="btn">
+
+          <Button
+            variant="contained"
+            size="small"
+            style={{
+              margin: "15px",
+              bottom: "0",
+              justifyContent: "center",
+              left: "50px",
+            }}
+            onClick={() => setOpen(true)}
+          >
             Checkout
-          </a>
+          </Button>
+          <ContentModal detail={detail} open={open} setOpen={setOpen} />
         </div>
       </div>
-      <ContentModal />
     </>
   );
 };
