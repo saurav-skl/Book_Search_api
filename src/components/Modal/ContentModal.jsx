@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import unavailable_img from "../../img/unavailable_img.png";
 import "./ContentModal.css";
-import { Button } from "@material-ui/core";
-// import YouTubeIcon from "@material-ui/icons/YouTube";
-// import Carousel from "../Carousel/Carousel";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -29,12 +26,11 @@ const useStyles = makeStyles((theme) => ({
 
 const ContentModal = ({ detail, open, setOpen }) => {
   const classes = useStyles();
-  // const [content, setContent] = useState();
-  // const [video, setVideo] = useState();
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  const image =
+    detail.volumeInfo.imageLinks !== undefined
+      ? detail.volumeInfo.imageLinks.thumbnail
+      : unavailable_img;
 
   const handleClose = () => {
     setOpen(false);
@@ -59,7 +55,7 @@ const ContentModal = ({ detail, open, setOpen }) => {
             <div className={classes.paper}>
               <div className="ContentModal">
                 <img
-                  src={unavailable_img}
+                  src={image}
                   alt={"bla bla"}
                   className="ContentModal__portrait"
                 />
@@ -104,7 +100,9 @@ const ContentModal = ({ detail, open, setOpen }) => {
                   )}
 
                   <span className="ContentModal__description">
-                    {detail.volumeInfo.description ? detail.volumeInfo.description : "Sorry, No information..."}
+                    {detail.volumeInfo.description
+                      ? detail.volumeInfo.description
+                      : "Sorry, No information..."}
                   </span>
                 </div>
               </div>

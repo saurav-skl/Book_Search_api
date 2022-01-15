@@ -1,4 +1,3 @@
-// import { img_300, unavailable } from "../../config/config";
 import unavailable_img from "../../img/unavailable_img.png";
 import React, { useState } from "react";
 import ContentModal from "../Modal/ContentModal";
@@ -68,17 +67,3 @@ const SingleContent = ({ detail }) => {
 
 export default SingleContent;
 
-/*
-id, poster, title, date, media_type
-
- <img
-          className="poster singleContent__img"
-          // src={poster ? `${img_300}${poster}` : unavailable}
-          alt={title}
-        /> 
-  <span className="subTitle">
-          {media_type === "tv" ? "TV Series" : "Movie"}
-          <span className="subTitle">{date}</span>
-        </span> 
-
-*/

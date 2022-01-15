@@ -6,7 +6,6 @@ import { Container, Snackbar } from "@material-ui/core";
 const searchCard = {
   margin: "75px auto",
   background: "#F7DED2",
-  // font-family: 'Open Sans', sans-serif;
   display: "flex",
   flexFlow: "row wrap",
   justifyContent: "center",

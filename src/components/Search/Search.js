@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import axios from "axios";
-import {
-  Button,
-  Container,
-  Snackbar,
-  Tab,
-  Tabs,
-  TextField,
-} from "@material-ui/core";
+import { Button, Container, Snackbar, TextField } from "@material-ui/core";
 
 import SearchIcon from "@material-ui/icons/Search";
 import SingleContent from "../SingleContent/SingleContent";
-// import "./Search.css";
 
 const searchStyle = {
   display: "flex",
@@ -106,8 +98,3 @@ const Search = () => {
   );
 };
 export default Search;
-
-/*
-
-
-*/

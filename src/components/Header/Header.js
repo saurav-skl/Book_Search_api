@@ -4,8 +4,6 @@ import "./Header.css";
 const headerStyle = {
   cursor: "pointer",
   backgroundColor: "#F2AA4CFF",
-  // width:"200px",
-  "@media (maxWidth: 1000px)": {},
 };
 
 const Header = () => {
