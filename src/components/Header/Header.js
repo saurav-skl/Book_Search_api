@@ -10,10 +10,10 @@ const headerStyle = {
 
 const Header = () => {
   return (
-    <AppBar onClick={() => window.scroll(0, 0)} style={headerStyle}>
+    <AppBar style={headerStyle}>
       <Toolbar>
         <Typography variant="h5" style={{ margin: "auto" }}>
-          <strong> Books Store </strong>
+          <strong> Books Store API </strong>
         </Typography>
       </Toolbar>
     </AppBar>

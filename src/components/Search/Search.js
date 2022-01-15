@@ -1,11 +1,25 @@
 import React, { useEffect, useState } from "react";
 
 import axios from "axios";
-import { Button, Tab, Tabs, TextField, ThemeProvider } from "@material-ui/core";
+import {
+  Button,
+  Container,
+  Tab,
+  Tabs,
+  TextField,
+  ThemeProvider,
+} from "@material-ui/core";
 
 import SearchIcon from "@material-ui/icons/Search";
 import SingleContent from "../SingleContent/SingleContent";
 // import "./Search.css";
+
+const searchStyle = {
+  display: "flex",
+  height: "100px",
+  justifyContent: "center",
+  padding: "20px",
+};
 
 const Search = () => {
   const [searchText, setSearchText] = useState("");
@@ -23,6 +37,7 @@ const Search = () => {
       let data = res.data;
       if (data.items.length > 0) {
         setContent(data.items);
+        console.log(data.items)
       }
     } catch (error) {
       console.error(error);
@@ -32,26 +47,32 @@ const Search = () => {
 
   return (
     <div>
-      <div className="search">
-        <TextField
-          style={{ flex: 1 }}
-          className="searchBox"
-          label="Search"
-          variant="filled"
-          onChange={(e) => setSearchText(e.target.value)}
-        />
-        <Button
-          onClick={fetchSearch}
-          variant="contained"
-          style={{ marginLeft: 10 }}
-        >
-          <SearchIcon fontSize="large" />
-        </Button>
-      </div>
-      <div className="trending">
-        {content &&
-          content.map((c) => (<SingleContent key={c.id} id={c.id} detail={c} />))}
-      </div>
+      <Container>
+        <div className="search" style={searchStyle}>
+          <TextField
+            className="searchBox"
+            style={{ flex: 1 }}
+            size="medium"
+            label="Search"
+            variant="filled"
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+          <Button
+            onClick={fetchSearch}
+            variant="contained"
+            style={{ marginLeft: 10, height: "55px" }}
+            size="small"
+          >
+            <SearchIcon />
+          </Button>
+        </div>
+        <div className="trending">
+          {content &&
+            content.map((c) => (
+              <SingleContent key={c.id} id={c.id} detail={c} />
+            ))}
+        </div>
+      </Container>
     </div>
   );
 };
